@@ -2,7 +2,9 @@
 package main;
 
 import POJO.Empleado;
+import POJO.Incidencia;
 import gestionConsultas.EmpleadoDAO;
+import java.util.Date;
 
 /**
  *
@@ -16,10 +18,16 @@ public class main {
 
          EmpleadoDAO empleadoDAO = new EmpleadoDAO();
 
-        Empleado nuevoEmpleado = new Empleado("usuario1", "1234", "Juan Pérez", "600123456");
-        empleadoDAO.insertarEmpleado(nuevoEmpleado);
+//        Empleado nuevoEmpleado = new Empleado("usu4", "1244", "Paco", "600123456");
+//        empleadoDAO.insertarEmpleado(nuevoEmpleado);
+        
+        Date fechahoy = new Date();
+        Incidencia nuevaInc = new Incidencia(fechahoy, new Empleado(1), new Empleado(2), "Me huelen los pies a queso", 'N');
+        empleadoDAO.insertarIncidencia(nuevaInc);
+        
+        
 
-        System.out.println("Empleado insertado con éxito.");
+        System.out.println("Incidencia insertada con éxito.");
 
     }
 }

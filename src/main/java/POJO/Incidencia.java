@@ -27,8 +27,8 @@ public class Incidencia implements Serializable{
         this.id_incidencia = id_Incidencia;
     }
 
-    public Incidencia(int id_Incidencia, Date fecha_hora_generacion, Empleado id_empleado_origen, Empleado id_empleado_destino, String detalle, char tipo) {
-        this.id_incidencia = id_Incidencia;
+    public Incidencia( Date fecha_hora_generacion, Empleado id_empleado_origen, Empleado id_empleado_destino, String detalle, char tipo) {
+        
         this.fecha_hora_generacion = fecha_hora_generacion;
         this.id_empleado_origen = id_empleado_origen;
         this.id_empleado_destino = id_empleado_destino;
@@ -36,11 +36,11 @@ public class Incidencia implements Serializable{
         this.tipo = tipo;
     }
 
-    public int getId_Incidencia() {
+    public int getId_incidencia() {
         return id_incidencia;
     }
 
-    public void setId_Incidencia(int id_incidencia) {
+    public void setId_incidencia(int id_incidencia) {
         this.id_incidencia = id_incidencia;
     }
 
