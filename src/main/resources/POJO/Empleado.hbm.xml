@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 17-feb-2017 9:27:20 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="POJO.Empleado" table="empleados" catalog="M07_incidencias" optimistic-lock="version">
+        <id name="id_empleado" type="int">
+            <column name="id_empleado" />
+            <generator class="identity" />
+        </id>
+        <property name="nombre_usuario" type="java.lang.String">
+            <column name="nombre_usuario" length="20" unique="true" not-null="true" />
+        </property>
+        <property name="contrasena" type="java.lang.String">
+            <column name="contrasena" not-null="true" />
+        </property>
+        <property name="nombre_completo" type="java.lang.String">
+            <column name="nombre_completo" not-null="true" />
+        </property>
+        <property name="telefono_contacto" type="java.lang.String">
+            <column name="telefono_contacto" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
