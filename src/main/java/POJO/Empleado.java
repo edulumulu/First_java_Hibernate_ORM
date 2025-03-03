@@ -36,6 +36,16 @@ public class Empleado implements Serializable{
         this.telefono_contacto = telefono_contacto;
     }
 
+    public Empleado(int id_empleado, String nombre_usuario, String contrasena, String nombre_completo, String telefono_contacto) {
+        this.id_empleado = id_empleado;
+        this.nombre_usuario = nombre_usuario;
+        this.contrasena = contrasena;
+        this.nombre_completo = nombre_completo;
+        this.telefono_contacto = telefono_contacto;
+    }
+    
+    
+
     public int getId_empleado() {
         return id_empleado;
     }

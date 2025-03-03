@@ -1,4 +1,5 @@
 POJO/Empleado.class
+gestionConsultas/IncidenciaDAO.class
 gestionConsultas/EmpleadoDAO.class
 herramientas/HibernateUtil.class
 POJO/Incidencia.class

@@ -12,9 +12,9 @@
             <column name="fecha_hora_generacion"  />
         </property>
         
-        <many-to-one name="id_empleado_origen" class="POJO.Empleado" column="id_empleado_origen" not-null="true" />
-
-        <many-to-one name="id_empleado_destino" class="POJO.Empleado" column="id_empleado_destino" not-null="true" />
+       <many-to-one name="id_empleado_origen" class="POJO.Empleado" column="id_empleado_origen" not-null="true" fetch="join"/>
+        
+       <many-to-one name="id_empleado_destino" class="POJO.Empleado" column="id_empleado_destino" not-null="true" fetch="join"/>
 
         <property name="detalle" type="java.lang.String">
             <column name="detalle" not-null="true" />
