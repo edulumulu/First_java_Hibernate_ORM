@@ -88,13 +88,7 @@ public class Empleado implements Serializable{
 
     @Override
     public String toString() {
-        return "Empleado{" + 
-                "id_empleado=" + id_empleado + 
-                ", nombre_usuario=" + nombre_usuario + 
-                ", contrasena=" + contrasena + 
-                ", nombre_completo=" + nombre_completo + 
-                ", telefono_contacto=" + telefono_contacto + 
-                '}';
+        return  nombre_completo ;
     }
 
     

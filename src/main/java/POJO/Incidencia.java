@@ -83,6 +83,18 @@ public class Incidencia implements Serializable{
     public void setTipo(char tipo) {
         this.tipo = tipo;
     }
+    
+    public String obtenerUrgencia() {
+        if (tipo == 'U') {
+            return "Urgente";
+        } else if (tipo == 'N') {
+            return "Normal";
+        } else {
+            return "Desconocido"; // En caso de que haya un valor inesperado
+        }
+    }
+   
+    
 
     @Override
     public String toString() {

@@ -22,12 +22,12 @@ public class main {
          IncidenciaDAO incidenciaDao = new IncidenciaDAO();
          
 
-        //        Empleado nuevoEmpleado = new Empleado("usu5", "12445", "Pacquito", "600123456");
-        //        empleadoDAO.insertarEmpleado(nuevoEmpleado);
+                Empleado nuevoEmpleado = new Empleado("10", "10", "Eduardo Lucas", "600123456");
+                empleadoDAO.insertarEmpleado(nuevoEmpleado);
 
-                Date fechahoy = new Date();
-                Incidencia nuevaInc = new Incidencia(fechahoy, new Empleado(1), new Empleado(5), "Thuevear", 'U');
-                incidenciaDao.insertarIncidencia(nuevaInc);
+//                Date fechahoy = new Date();
+//                Incidencia nuevaInc = new Incidencia(fechahoy, new Empleado(1), new Empleado(5), "Thuevear", 'U');
+//                incidenciaDao.insertarIncidencia(nuevaInc);
 
         //        empleadoDAO.eliminar_Empleado(6);
         //        
@@ -66,19 +66,32 @@ public class main {
 //            }
 //               }
                
-               
-                Empleado emp= new Empleado(2,"2", "2", "2", "2");
-                
-           ArrayList<Incidencia> lista_incidencias = incidenciaDao.obtener_incidencias_para_empleado(emp);
-           
-            if(!lista_incidencias.isEmpty()){
-                   
-                   System.out.println("LISTADO NUEVO DE INCIDENCIAS");
-                   for(Incidencia in : lista_incidencias){
-                System.out.println(in.toString());
-                System.out.println("-------------");
-            }
-               }
+//               
+//                Empleado emp= new Empleado(2,"2", "2", "2", "2");
+//                
+//           ArrayList<Incidencia> lista_incidencias = incidenciaDao.obtener_incidencias_para_empleado(emp);
+//           
+//            if(!lista_incidencias.isEmpty()){
+//                   
+//                   System.out.println("LISTADO NUEVO DE INCIDENCIAS");
+//                   for(Incidencia in : lista_incidencias){
+//                System.out.println(in.toString());
+//                System.out.println("-------------");
+//            }
+//               }
+            
+//                       ArrayList<Empleado> lista_empleados = empleadoDAO.listarEmpleados();
+//                       
+//                       if(!lista_empleados.isEmpty()){
+//                   
+//                   System.out.println("LISTADO NUEVO DE EMPLEADOS");
+//                   for(Empleado in : lista_empleados){
+//                System.out.println(in.toString());
+//                System.out.println("-------------");
+//            }
+//               }
+
+            
 
                    
                

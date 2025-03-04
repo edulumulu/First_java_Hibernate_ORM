@@ -18,9 +18,10 @@ import org.hibernate.query.Query;
  */
 public class IncidenciaDAO {
 
-    public void insertarIncidencia(Incidencia incidencia) {
+    public static boolean insertarIncidencia(Incidencia incidencia) {
         Transaction transaction = null;
         Session session = null;
+        boolean ok = false;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             transaction = session.beginTransaction();
@@ -30,17 +31,22 @@ public class IncidenciaDAO {
             transaction.commit();  // Realiza el commit de la transacción
 
             System.out.println("Incidencia insertada correctamente.");
+            
+            ok = true;
+            
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();  // Si ocurre un error, se hace rollback
             }
             System.out.println("Error al insertar incidencia: " + e.getMessage());
             e.printStackTrace();
+            ok = false;
         } finally {
             if (session != null) {
                 session.close();  // Cierra la sesión después de la transacción
             }
         }
+        return ok;
     }
 
     public static ArrayList<Incidencia> listar_incidencias() {
