@@ -1,59 +1,84 @@
-
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
+ */
 package interfaz_gráfica;
 
+import POJO.Empleado;
 import POJO.Incidencia;
+import gestionConsultas.EmpleadoDAO;
 import gestionConsultas.IncidenciaDAO;
-import java.sql.Connection;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-
 /**
- * Muestra por pantalla una tabla con un listado de los empleados de la BBDD con su información
- * @author edulumulu
+ *
+ * @author eduardolucasmunozdelucas
  */
-public class Mostrar_incidencias extends javax.swing.JDialog {
+public class Incidencias_destinadass_a_empleado extends javax.swing.JDialog {
 
+    private int id_selecionado;
+    private ArrayList<Empleado> lista_empleados = new ArrayList<>();
+    private EmpleadoDAO empleadoDAO = new EmpleadoDAO();
+    private ArrayList<Incidencia> lista_incidencias = new ArrayList<>();
+    private IncidenciaDAO incidenciaDAO = new IncidenciaDAO();
     
-   
-    ArrayList<Incidencia> lista_incidencias = new ArrayList<>();
-    IncidenciaDAO inidenciaDAO = new IncidenciaDAO();
-    
+    DefaultTableModel modelo;
+
     /**
-     * Creates new form Mostrar_empleados
+     * Creates new form Incidencias_creadas_por_empleado
      */
-    public Mostrar_incidencias(java.awt.Frame parent, boolean modal) {
+    public Incidencias_destinadass_a_empleado(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
-        lista_incidencias = inidenciaDAO.listar_incidencias();
-        
-        
-         if (!lista_incidencias.isEmpty()) {
-             
-             lb_numero.setText(Integer.toString(lista_incidencias.size()));
-            DefaultTableModel modelo = (DefaultTableModel) tb_tabla.getModel();
-            
-            // Limpiar la tabla por si tiene datos previos
-            modelo.setRowCount(0);
-            
-            for (Incidencia in : lista_incidencias) {
-                modelo.addRow(new Object[]{
-                    in.getId_incidencia(),
-                    in.getFecha_hora_generacion(),
-                    in.getId_empleado_origen().getNombre_usuario(),
-                    in.getId_empleado_destino().getNombre_usuario(),
-                    in.getDetalle(),
-                    in.obtenerUrgencia()
-                   
-                });
+
+        lista_empleados = empleadoDAO.listarEmpleados();
+
+        if (!lista_empleados.isEmpty()) {
+            for (Empleado em : lista_empleados) {
+                cb_empleados.addItem(em); // Guardar objetos en lugar de nombres
             }
-        } else {
-             JOptionPane.showMessageDialog(this, "No existe ninguna incidencia en la BBDD", "Error", JOptionPane.WARNING_MESSAGE);
-            dispose();
         }
-        
+
+        cb_empleados.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (cb_empleados.getSelectedItem() != null) {
+
+                    Empleado empleado_selecionado = (Empleado) cb_empleados.getSelectedItem();
+                    
+                    lista_incidencias = incidenciaDAO.obtener_incidencias_para_empleado(empleado_selecionado);
+                    if (!lista_incidencias.isEmpty() || lista_incidencias == null) {
+
+                        modelo = (DefaultTableModel) tb_tabla.getModel();
+
+                        // Limpiar la tabla por si tiene datos previos
+                        modelo.setRowCount(0);
+
+                        for (Incidencia in : lista_incidencias) {
+                            modelo.addRow(new Object[]{
+                                in.getId_incidencia(),
+                                in.getFecha_hora_generacion(),
+                                in.getId_empleado_origen().getNombre_usuario(),
+                                in.getId_empleado_destino().getNombre_usuario(),
+                                in.getDetalle(),
+                                in.obtenerUrgencia()
+
+                            });
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(Incidencias_destinadass_a_empleado.this, "No existe incidencias destinadas a este usuario", "Error", JOptionPane.WARNING_MESSAGE);
+                        modelo.setRowCount(0);
+                        
+                        return;
+                    }
+
+                }
+            }
+        });
     }
 
     /**
@@ -65,24 +90,14 @@ public class Mostrar_incidencias extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        lb_numero = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tb_tabla = new javax.swing.JTable();
         bt_salir = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        cb_empleados = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Lista de incidencias");
-
-        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jLabel1.setText("LISTADO TOTAL DE INCIDENCIAS -->");
-
-        jLabel2.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jLabel2.setText("INCIDENCIAS");
-
-        lb_numero.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        lb_numero.setText("jLabel3");
+        setTitle("Incidencias destinadas a usuario");
 
         tb_tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -112,6 +127,8 @@ public class Mostrar_incidencias extends javax.swing.JDialog {
             }
         });
 
+        jLabel1.setText("Selecciona un empleado:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -119,40 +136,38 @@ public class Mostrar_incidencias extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
+                        .addGap(32, 32, 32)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 717, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(119, 119, 119)
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(lb_numero)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel2))
+                        .addGap(348, 348, 348)
+                        .addComponent(bt_salir))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(332, 332, 332)
-                        .addComponent(bt_salir)))
-                .addContainerGap(27, Short.MAX_VALUE))
+                        .addGap(177, 177, 177)
+                        .addComponent(jLabel1)
+                        .addGap(35, 35, 35)
+                        .addComponent(cb_empleados, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(41, 41, 41)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(49, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(lb_numero))
-                .addGap(41, 41, 41)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                    .addComponent(cb_empleados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(38, 38, 38)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44)
                 .addComponent(bt_salir)
-                .addGap(42, 42, 42))
+                .addGap(24, 24, 24))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void bt_salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_salirActionPerformed
-        dispose();
+       dispose();
+       
     }//GEN-LAST:event_bt_salirActionPerformed
 
     /**
@@ -172,13 +187,13 @@ public class Mostrar_incidencias extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Mostrar_incidencias.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Incidencias_destinadass_a_empleado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Mostrar_incidencias.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Incidencias_destinadass_a_empleado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Mostrar_incidencias.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Incidencias_destinadass_a_empleado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Mostrar_incidencias.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Incidencias_destinadass_a_empleado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -186,7 +201,7 @@ public class Mostrar_incidencias extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Mostrar_incidencias dialog = new Mostrar_incidencias(new javax.swing.JFrame(), true);
+                Incidencias_destinadass_a_empleado dialog = new Incidencias_destinadass_a_empleado(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -200,10 +215,9 @@ public class Mostrar_incidencias extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt_salir;
+    private javax.swing.JComboBox<Empleado> cb_empleados;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JLabel lb_numero;
     private javax.swing.JTable tb_tabla;
     // End of variables declaration//GEN-END:variables
 }

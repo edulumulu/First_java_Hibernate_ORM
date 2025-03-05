@@ -42,9 +42,11 @@ public class Modificar_contrasena extends javax.swing.JDialog {
             }
         }
 
+       
+        lb_id.setEnabled(false);
+        lb_user.setEnabled(false);
+        lb_contra_antigua.setEnabled(false);
         et_pass_nueva.setEnabled(false);
-        et_pass_nueva.setEnabled(false);
-        et_pass_nueva.setEditable(false);
         et_pass_nueva.setEditable(false);
 
         cb_empleados.addActionListener(new ActionListener() {
@@ -54,16 +56,14 @@ public class Modificar_contrasena extends javax.swing.JDialog {
 
                    
                     et_pass_nueva.setEnabled(true);
-                    et_pass_nueva.setEnabled(true);
-               
                     et_pass_nueva.setEditable(true);
-                    et_pass_nueva.setEditable(true);
+                    
 
                     selecionado = (Empleado) cb_empleados.getSelectedItem();
 
-                    lb_id.setText(String.valueOf(selecionado.getId_empleado()));
-                    lb_user.setText(selecionado.getNombre_usuario());
-                    lb_contra_antigua.setText(selecionado.getContrasena());
+                    lb_id2.setText(String.valueOf(selecionado.getId_empleado()));
+                    lb_user2.setText(selecionado.getNombre_usuario());
+                    lb_pass2.setText(selecionado.getContrasena());
 
                     bt_aceptar.setEnabled(true);
 
@@ -95,6 +95,9 @@ public class Modificar_contrasena extends javax.swing.JDialog {
         lb_id = new javax.swing.JLabel();
         lb_user = new javax.swing.JLabel();
         lb_contra_antigua = new javax.swing.JLabel();
+        lb_id2 = new javax.swing.JLabel();
+        lb_user2 = new javax.swing.JLabel();
+        lb_pass2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Modificar contraseña");
@@ -123,6 +126,15 @@ public class Modificar_contrasena extends javax.swing.JDialog {
 
         jLabel6.setText("Id:");
 
+        lb_id2.setForeground(new java.awt.Color(0, 51, 255));
+        lb_id2.setText("id");
+
+        lb_user2.setForeground(new java.awt.Color(0, 51, 255));
+        lb_user2.setText("user");
+
+        lb_pass2.setForeground(new java.awt.Color(0, 51, 255));
+        lb_pass2.setText("pass");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -148,7 +160,10 @@ public class Modificar_contrasena extends javax.swing.JDialog {
                             .addComponent(jLabel4)
                             .addComponent(jLabel1))
                         .addGap(18, 18, 18)
-                        .addComponent(et_pass_nueva, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(et_pass_nueva, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lb_user2)
+                            .addComponent(lb_pass2)))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(bt_salir)
@@ -159,7 +174,9 @@ public class Modificar_contrasena extends javax.swing.JDialog {
                                 .addComponent(jLabel6)
                                 .addComponent(jLabel5))
                             .addGap(18, 18, 18)
-                            .addComponent(cb_empleados, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(cb_empleados, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lb_id2)))))
                 .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
@@ -171,25 +188,30 @@ public class Modificar_contrasena extends javax.swing.JDialog {
                 .addComponent(lb_user)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lb_contra_antigua)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(cb_empleados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel6)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(et_pass_nueva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(31, 31, 31)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(bt_aceptar)
-                            .addComponent(bt_salir))))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel5)
+                        .addComponent(cb_empleados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lb_contra_antigua))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(lb_id2))
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(lb_user2))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(lb_pass2))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(et_pass_nueva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bt_aceptar)
+                    .addComponent(bt_salir))
                 .addGap(33, 33, 33))
         );
 
@@ -204,7 +226,7 @@ public class Modificar_contrasena extends javax.swing.JDialog {
             return;
         }
         
-        id_Selecionado = Integer.parseInt(lb_id.getText());
+        id_Selecionado = Integer.parseInt(lb_id2.getText());
         pass_nueva = et_pass_nueva.getText();
         
 
@@ -287,6 +309,9 @@ public class Modificar_contrasena extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel lb_contra_antigua;
     private javax.swing.JLabel lb_id;
+    private javax.swing.JLabel lb_id2;
+    private javax.swing.JLabel lb_pass2;
     private javax.swing.JLabel lb_user;
+    private javax.swing.JLabel lb_user2;
     // End of variables declaration//GEN-END:variables
 }

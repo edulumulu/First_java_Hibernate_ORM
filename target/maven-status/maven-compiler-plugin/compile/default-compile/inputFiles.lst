@@ -1,4 +1,6 @@
+/Users/eduardolucasmunozdelucas/NetBeansProjects/AAD_Actividad2_tema3_ORM/src/main/java/interfaz_gráfica/Incidencias_creadas_por_empleado.java
 /Users/eduardolucasmunozdelucas/NetBeansProjects/AAD_Actividad2_tema3_ORM/src/main/java/interfaz_gráfica/Modificar_empleado.java
+/Users/eduardolucasmunozdelucas/NetBeansProjects/AAD_Actividad2_tema3_ORM/src/main/java/interfaz_gráfica/Incidencia_por_id.java
 /Users/eduardolucasmunozdelucas/NetBeansProjects/AAD_Actividad2_tema3_ORM/src/main/java/interfaz_gráfica/Menu_incidencias.java
 /Users/eduardolucasmunozdelucas/NetBeansProjects/AAD_Actividad2_tema3_ORM/src/main/java/POJO/Empleado.java
 /Users/eduardolucasmunozdelucas/NetBeansProjects/AAD_Actividad2_tema3_ORM/src/main/java/interfaz_gráfica/MenuPrincipal.java
@@ -8,6 +10,7 @@
 /Users/eduardolucasmunozdelucas/NetBeansProjects/AAD_Actividad2_tema3_ORM/src/main/java/interfaz_gráfica/Loguearse.java
 /Users/eduardolucasmunozdelucas/NetBeansProjects/AAD_Actividad2_tema3_ORM/src/main/java/interfaz_gráfica/Insertar_empleado.java
 /Users/eduardolucasmunozdelucas/NetBeansProjects/AAD_Actividad2_tema3_ORM/src/main/java/gestionConsultas/IncidenciaDAO.java
+/Users/eduardolucasmunozdelucas/NetBeansProjects/AAD_Actividad2_tema3_ORM/src/main/java/interfaz_gráfica/Incidencias_destinadass_a_empleado.java
 /Users/eduardolucasmunozdelucas/NetBeansProjects/AAD_Actividad2_tema3_ORM/src/main/java/interfaz_gráfica/Modificar_contrasena.java
 /Users/eduardolucasmunozdelucas/NetBeansProjects/AAD_Actividad2_tema3_ORM/src/main/java/POJO/Incidencia.java
 /Users/eduardolucasmunozdelucas/NetBeansProjects/AAD_Actividad2_tema3_ORM/src/main/java/gestionConsultas/EmpleadoDAO.java

@@ -154,7 +154,7 @@ public class Menu_incidencias extends javax.swing.JFrame {
     }//GEN-LAST:event_bt_ingresarActionPerformed
 
     private void bt_listarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_listarActionPerformed
-        Modificar_empleado l = new Modificar_empleado(this, true);
+        Mostrar_incidencias l = new Mostrar_incidencias(this, true);
         l.setLocationRelativeTo(null);
         l.setVisible(true);
         
@@ -162,7 +162,7 @@ public class Menu_incidencias extends javax.swing.JFrame {
 
     private void bt_incidenciaporidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_incidenciaporidActionPerformed
       
-        Modificar_contrasena l = new Modificar_contrasena(this, true);
+        Incidencia_por_id l = new Incidencia_por_id(this, true);
         l.setLocationRelativeTo(null);
         l.setVisible(true);
 
@@ -170,7 +170,7 @@ public class Menu_incidencias extends javax.swing.JFrame {
 
     private void bt_incidencia_por_empeladoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_incidencia_por_empeladoActionPerformed
 
-        Eliminar_Empleado l = new Eliminar_Empleado(this, true);
+        Incidencias_creadas_por_empleado l = new Incidencias_creadas_por_empleado(this, true);
         l.setLocationRelativeTo(null);
         l.setVisible(true);
 
@@ -178,9 +178,9 @@ public class Menu_incidencias extends javax.swing.JFrame {
 
     private void bt_incidencias_para_empleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_incidencias_para_empleadoActionPerformed
 
-//        Mostrar_empleados l = new Mostrar_empleados(this, true);
-//        l.setLocationRelativeTo(null);
-//        l.setVisible(true);
+        Incidencias_destinadass_a_empleado l = new Incidencias_destinadass_a_empleado(this, true);
+        l.setLocationRelativeTo(null);
+        l.setVisible(true);
 
     }//GEN-LAST:event_bt_incidencias_para_empleadoActionPerformed
 

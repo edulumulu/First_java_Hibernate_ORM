@@ -77,7 +77,6 @@ public class Modificar_empleado extends javax.swing.JDialog {
 
                     bt_aceptar.setEnabled(true);
 
-
                 }
             }
         });
@@ -220,7 +219,23 @@ public class Modificar_empleado extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Debes rellenar todos los campos antes de continuar", "Acción fallida", JOptionPane.WARNING_MESSAGE);
             return;
         }
-        
+
+        for (Empleado em : lista_empleados) {
+
+            if (em.getId_empleado()== selecionado.getId_empleado()) {
+                continue; // Saltar a la siguiente iteración
+            }
+            if (em.getNombre_completo().equalsIgnoreCase(et_nombre.getText())) {
+                JOptionPane.showMessageDialog(this, "El nombre ya existe en la base de datos, escoge otro", "Acción fallida", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            if (em.getNombre_usuario().equalsIgnoreCase(et_user.getText())) {
+                JOptionPane.showMessageDialog(this, "El usuario ya existe en la base de datos, escoge otro", "Acción fallida", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+        }
+
         id_Selecionado = Integer.parseInt(lb_id.getText());
         nombre_Selecionado = et_nombre.getText();
         user_Selecionado = et_user.getText();
@@ -236,8 +251,7 @@ public class Modificar_empleado extends javax.swing.JDialog {
             return;
         }
 
-        
-        Empleado em = new Empleado(id_Selecionado,  user_Selecionado, pass_Selecionado,nombre_Selecionado, tel_Selecionado);
+        Empleado em = new Empleado(id_Selecionado, user_Selecionado, pass_Selecionado, nombre_Selecionado, tel_Selecionado);
         if (empleadoDao.modificar_empleado(em)) {
             JOptionPane.showMessageDialog(this, "Empleado modificado con éxito", "Empleado modificado", JOptionPane.WARNING_MESSAGE);
             dispose();

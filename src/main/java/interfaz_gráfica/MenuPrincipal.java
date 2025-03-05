@@ -154,9 +154,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void bt_logearseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_logearseActionPerformed
 
-//        Mostrar_empleados l = new Mostrar_empleados(this, true);
-//        l.setLocationRelativeTo(null);
-//        l.setVisible(true);
+        Loguearse l = new Loguearse(this, true);
+        l.setLocationRelativeTo(null);
+        l.setVisible(true);
 
     }//GEN-LAST:event_bt_logearseActionPerformed
 

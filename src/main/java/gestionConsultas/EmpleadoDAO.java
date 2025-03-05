@@ -107,8 +107,22 @@ public class EmpleadoDAO {
     public static boolean modificar_empleado(Empleado empleado) {
         Transaction transaction = null;
         boolean ok = false;
+
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction(); // Inicia la transacción
+
+            // Verificar si el nombre de usuario ya está en uso por otro empleado
+            Long count = session.createQuery(
+                    "SELECT COUNT(e) FROM Empleado e WHERE e.nombre_usuario = :nombreUsuario AND e.id_empleado <> :idEmpleado",
+                    Long.class)
+                    .setParameter("nombreUsuario", empleado.getNombre_usuario())
+                    .setParameter("idEmpleado", empleado.getId_empleado())
+                    .getSingleResult();
+
+            if (count > 0) {
+                System.out.println("Error: El nombre de usuario ya está en uso.");
+                return false; // Salir del método sin actualizar
+            }
 
             // Obtener el empleado que se va a modificar
             Empleado empl = session.get(Empleado.class, empleado.getId_empleado());
@@ -131,11 +145,9 @@ public class EmpleadoDAO {
                 for (Incidencia incidencia : incidencias) {
                     if (incidencia.getId_empleado_origen().getId_empleado() == empleado.getId_empleado()) {
                         incidencia.getId_empleado_origen().setNombre_usuario(empleado.getNombre_usuario());
-                        // Modificar otros campos si es necesario
                     }
-                    if (incidencia.getId_empleado_origen().getId_empleado() == empleado.getId_empleado()) {
+                    if (incidencia.getId_empleado_destino().getId_empleado() == empleado.getId_empleado()) {
                         incidencia.getId_empleado_destino().setNombre_usuario(empleado.getNombre_usuario());
-                        // Modificar otros campos si es necesario
                     }
                     session.update(incidencia); // Persistir la incidencia actualizada
                 }
@@ -151,7 +163,6 @@ public class EmpleadoDAO {
 
             // Commit de la transacción
             transaction.commit();
-            session.close();
 
         } catch (Exception e) {
             if (transaction != null) {
@@ -160,6 +171,7 @@ public class EmpleadoDAO {
             e.printStackTrace();
             ok = false;
         }
+
         return ok;
     }
 
