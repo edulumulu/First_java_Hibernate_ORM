@@ -12,7 +12,7 @@ import javax.swing.JTextField;
 
 /**
  *
- * @author eduardolucasmunozdelucas
+ * @author edulumulu
  */
 public class Incidencia_por_id extends javax.swing.JDialog {
 
@@ -66,6 +66,8 @@ public class Incidencia_por_id extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Incidencia por Id");
+        setBackground(new java.awt.Color(51, 255, 51));
+        setResizable(false);
 
         jLabel1.setText("Escribe el id de la incidenca:");
 
@@ -209,13 +211,13 @@ public class Incidencia_por_id extends javax.swing.JDialog {
                     .addComponent(et_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bt_buscar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(lb_fecha)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel3)
-                        .addComponent(lb_urge)))
-                .addGap(18, 18, 18)
+                        .addComponent(lb_urge))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2)
+                        .addComponent(lb_fecha)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -253,7 +255,7 @@ public class Incidencia_por_id extends javax.swing.JDialog {
                         .addComponent(lb_tel_destino)))
                 .addGap(26, 26, 26)
                 .addComponent(bt_salir)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
 
         pack();
@@ -263,6 +265,10 @@ public class Incidencia_por_id extends javax.swing.JDialog {
         dispose();
     }//GEN-LAST:event_bt_salirActionPerformed
 
+    /**
+     * Comprueba que el campo id esté relleno, si lo está y existe la incidencia carga los datos de la misma en los label, si no muestra mensaje de que no existe
+     * @param evt 
+     */
     private void bt_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_buscarActionPerformed
         
         if(et_id.getText().isEmpty()){
@@ -279,15 +285,13 @@ public class Incidencia_por_id extends javax.swing.JDialog {
             lb_id_origen.setText(String.valueOf(incidencia_seleccionada.getId_empleado_origen().getId_empleado()));
             lb_nombre_orogen.setText(incidencia_seleccionada.getId_empleado_origen().getNombre_completo());
             lb_usuario_origen.setText(incidencia_seleccionada.getId_empleado_origen().getNombre_usuario());
-            lb_usuario_origen.setText(incidencia_seleccionada.getId_empleado_origen().getTelefono_contacto());
             lb_tel_origen.setText(incidencia_seleccionada.getId_empleado_origen().getTelefono_contacto());
             
             
             lb_id_dest.setText(String.valueOf(incidencia_seleccionada.getId_empleado_destino().getId_empleado()));
-            lb_nombre_destino.setText(incidencia_seleccionada.getId_empleado_origen().getNombre_completo());
-            lb_usuario_destino.setText(incidencia_seleccionada.getId_empleado_origen().getNombre_usuario());
-            lb_usuario_destino.setText(incidencia_seleccionada.getId_empleado_origen().getTelefono_contacto());
-            lb_tel_destino.setText(incidencia_seleccionada.getId_empleado_origen().getTelefono_contacto());
+            lb_nombre_destino.setText(incidencia_seleccionada.getId_empleado_destino().getNombre_completo());
+            lb_usuario_destino.setText(incidencia_seleccionada.getId_empleado_destino().getNombre_usuario());
+            lb_tel_destino.setText(incidencia_seleccionada.getId_empleado_destino().getTelefono_contacto());
             
 
             
@@ -300,6 +304,9 @@ public class Incidencia_por_id extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_bt_buscarActionPerformed
 
+    /**
+     * Deja en blanco los label que contendrán los datos de la incidencia selecionada
+     */
     public void setear_valores(){
         lb_fecha.setText("");
             lb_detalle.setText("");

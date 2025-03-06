@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author eduardolucasmunozdelucas
+ * @author edulumulu
  */
 public class Eliminar_Empleado extends javax.swing.JDialog {
 
@@ -28,17 +28,20 @@ public class Eliminar_Empleado extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
 
-    bt_aceptar.setEnabled(false);
-    lista_empleados = empleadoDAO.listarEmpleados();
+        //Deshabilito el boton de aceptar y cargo lista de empleados
+        bt_aceptar.setEnabled(false);
+        lista_empleados = empleadoDAO.listarEmpleados();
 
-    if (!lista_empleados.isEmpty()) {
-        for (Empleado em : lista_empleados) {
-            cb_empleados.addItem(em); // Guardar objetos en lugar de nombres
+        //Añado al combo box los objetos empleado de la lista
+        if (!lista_empleados.isEmpty()) {
+            for (Empleado em : lista_empleados) {
+                cb_empleados.addItem(em); // Guardar objetos en lugar de nombres
+            }
         }
-    }
 
-    cb_empleados.addActionListener(e -> bt_aceptar.setEnabled(cb_empleados.getSelectedItem() != null));
-}
+        //Listener para cuando se toca un elemento del combobox, cambia el boton aceptar a habilitado si hay un elemento selecionado
+        cb_empleados.addActionListener(e -> bt_aceptar.setEnabled(cb_empleados.getSelectedItem() != null));
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -55,6 +58,7 @@ public class Eliminar_Empleado extends javax.swing.JDialog {
         bt_Salir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         jLabel1.setText("Selecciona un empleado:");
 
@@ -106,24 +110,29 @@ public class Eliminar_Empleado extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Comprueba que el combo box esté selecionado y elimina o avisa por que no puede eliminar al empleado
+     * @param evt 
+     */
     private void bt_aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_aceptarActionPerformed
- Empleado empleadoSeleccionado = (Empleado) cb_empleados.getSelectedItem();
+        Empleado empleadoSeleccionado = (Empleado) cb_empleados.getSelectedItem();
 
-    if (empleadoSeleccionado == null) {
-        JOptionPane.showMessageDialog(this, "Seleccione un empleado antes de continuar", "Error", JOptionPane.WARNING_MESSAGE);
-        return;
-    }
+        if (empleadoSeleccionado == null) {
+            JOptionPane.showMessageDialog(this, "Seleccione un empleado antes de continuar", "Error", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
 
-    if (empleadoDAO.eliminar_Empleado(empleadoSeleccionado) == 0) {
-        JOptionPane.showMessageDialog(this, "Empleado --> " + empleadoSeleccionado.getNombre_completo() + " borrado con éxito", "Acción completada", JOptionPane.WARNING_MESSAGE);
-        dispose();
-    } else {
-        if(empleadoDAO.eliminar_Empleado(empleadoSeleccionado) == 1){
-        JOptionPane.showMessageDialog(this, "No se ha podido borrar el empleado, tiene incidencias asociadas", "Acción fallida", JOptionPane.WARNING_MESSAGE);
-        }else{
-            JOptionPane.showMessageDialog(this, "No existe el empleado en la base de datos", "Acción fallida", JOptionPane.WARNING_MESSAGE);
+        // Si el empleado existe y tiene incidencias lo elimina, si existe pero no tiene incidencias avisa de que no tiene incidencias, si no existe avisa
+        if (empleadoDAO.eliminar_Empleado(empleadoSeleccionado) == 0) {
+            JOptionPane.showMessageDialog(this, "Empleado --> " + empleadoSeleccionado.getNombre_completo() + " borrado con éxito", "Acción completada", JOptionPane.WARNING_MESSAGE);
+            dispose();
+        } else {
+            if (empleadoDAO.eliminar_Empleado(empleadoSeleccionado) == 1) {
+                JOptionPane.showMessageDialog(this, "No se ha podido borrar el empleado, tiene incidencias asociadas", "Acción fallida", JOptionPane.WARNING_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "No existe el empleado en la base de datos", "Acción fallida", JOptionPane.WARNING_MESSAGE);
             }
-    }
+        }
 
 
     }//GEN-LAST:event_bt_aceptarActionPerformed

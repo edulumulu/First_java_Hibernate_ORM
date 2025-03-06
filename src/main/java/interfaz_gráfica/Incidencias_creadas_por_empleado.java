@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author eduardolucasmunozdelucas
+ * @author edulumulu
  */
 public class Incidencias_creadas_por_empleado extends javax.swing.JDialog {
 
@@ -35,23 +35,30 @@ public class Incidencias_creadas_por_empleado extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
 
+        //Cargo lista de empleados con el select
         lista_empleados = empleadoDAO.listarEmpleados();
 
+        //cargo el combobox con los objeto empleado
         if (!lista_empleados.isEmpty()) {
             for (Empleado em : lista_empleados) {
                 cb_empleados.addItem(em); // Guardar objetos en lugar de nombres
             }
         }
 
+        //Listener para cuando un empleado es selecionado mueste la lista de incidencias si las ha creado
         cb_empleados.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (cb_empleados.getSelectedItem() != null) {
 
+                    //Creo un Cliente a partir del cliente selecionado
                     Empleado empleado_selecionado = (Empleado) cb_empleados.getSelectedItem();
                     int id_selecionado = empleado_selecionado.getId_empleado();
 
+                    //Añado la listas de las incidencias mediante el select de las incidencias relaccionadas con ese id
                     lista_incidencias = incidenciaDAO.obtener_incidencias_por_empleado(id_selecionado);
+                    
+                    //Si hay incidencias cargo la tabla con las mismas, si no enseño mensaje por pantalla
                     if (!lista_incidencias.isEmpty()) {
 
                         modelo = (DefaultTableModel) tb_tabla.getModel();
@@ -98,6 +105,8 @@ public class Incidencias_creadas_por_empleado extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Incidencias por usuario");
+        setBackground(new java.awt.Color(51, 255, 51));
+        setResizable(false);
 
         tb_tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author eduardolucasmunozdelucas
+ * @author edulumulu
  */
 public class Modificar_contrasena extends javax.swing.JDialog {
 
@@ -33,32 +33,32 @@ public class Modificar_contrasena extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
 
+        //listo empleados y los cargo en el combobox 
         lista_empleados = empleadoDao.listarEmpleados();
-        bt_aceptar.setEnabled(false);
-
+        
         if (!lista_empleados.isEmpty()) {
             for (Empleado em : lista_empleados) {
                 cb_empleados.addItem(em); // Guardar objetos en lugar de nombres
             }
         }
 
-       
+        //Deshabilito el botón aceptar y los campos que muestran los datos del empleado
+        bt_aceptar.setEnabled(false);
         lb_id.setEnabled(false);
         lb_user.setEnabled(false);
         lb_contra_antigua.setEnabled(false);
         et_pass_nueva.setEnabled(false);
         et_pass_nueva.setEditable(false);
 
+        //listener que habilita los datos del empleado selecionado y el campo para modificar la contraseña. Habilita el boton aceptar
         cb_empleados.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (cb_empleados.getSelectedItem() != null) {
 
-                   
                     et_pass_nueva.setEnabled(true);
                     et_pass_nueva.setEditable(true);
                     
-
                     selecionado = (Empleado) cb_empleados.getSelectedItem();
 
                     lb_id2.setText(String.valueOf(selecionado.getId_empleado()));
@@ -101,6 +101,7 @@ public class Modificar_contrasena extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Modificar contraseña");
+        setResizable(false);
 
         jLabel1.setText("Nombre usuario:");
 
@@ -218,6 +219,10 @@ public class Modificar_contrasena extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Comprueba qeu el campo no esté vacío y que no coincida con la contraseña antigua
+     * @param evt 
+     */
     private void bt_aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_aceptarActionPerformed
 
         // Verificar si hay campos vacíos
@@ -236,7 +241,6 @@ public class Modificar_contrasena extends javax.swing.JDialog {
             return;
         }
 
-        
         //Empleado em = new Empleado(id_Selecionado, nombre_Selecionado, user_Selecionado, pass_Selecionado, tel_Selecionado);
         if (empleadoDao.modificar_contrasena_empleado(id_Selecionado, pass_nueva)) {
             JOptionPane.showMessageDialog(this, "contraseña modificada con éxito", "Empleado modificado", JOptionPane.WARNING_MESSAGE);

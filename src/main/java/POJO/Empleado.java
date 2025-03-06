@@ -2,12 +2,11 @@
 package POJO;
 
 import java.io.Serializable;
-import jakarta.persistence.*;
 
 
 /**
  *
- * @author eduardolucasmunozdelucas
+ * @author edulumulu
  */
 
 
@@ -86,6 +85,10 @@ public class Empleado implements Serializable{
         this.telefono_contacto = telefono_contacto;
     }
 
+    /**
+     * Lo he modificado para mostrar solo esto en los combobox
+     * @return 
+     */
     @Override
     public String toString() {
         return  nombre_completo ;

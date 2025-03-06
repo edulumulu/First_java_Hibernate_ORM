@@ -14,13 +14,17 @@ import java.util.List;
 import org.hibernate.query.Query;
 
 /**
- *
- * @author eduardolucasmunozdelucas
+ * Clase con los métodos de interación con la base de datos
+ * @author edulumulu
  */
 public class EmpleadoDAO {
 
-    // Insertar un nuevo empleado
-    public boolean insertarEmpleado(Empleado empleado) {
+    /**
+     * Metodo que inserta un empleado en la base de datos
+     * @param empleado
+     * @return 
+     */
+    public static boolean insertarEmpleado(Empleado empleado) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
@@ -37,6 +41,11 @@ public class EmpleadoDAO {
         }
     }
 
+    /**
+     * Método que elimina un empleado de la base de datos si no tiene incidencias asociadas
+     * @param empleado
+     * @return 
+     */
     public static int eliminar_Empleado(Empleado empleado) {
 //    if (empleado == null || empleado.getId_empleado() == null) {
 //        System.out.println("El empleado es nulo o no tiene ID, no se puede eliminar.");
@@ -75,35 +84,12 @@ public class EmpleadoDAO {
         }
     }
 
-//    public static void modificar_empleado(int id, String contrasena, String nombre_user, String nombre_completo, String tlf){//Modifica un objeto cuyo id se pasa como parámetro
-//        Transaction transaction=null; 
-//        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-//
-//            transaction=session.beginTransaction(); //Crea una transacción
-//            Empleado empl = session.get(Empleado.class, id);
-//             if (empl != null) {
-//                empl.setNombre_usuario(nombre_user);
-//                empl.setNombre_completo(nombre_completo);
-//                empl.setContrasena(contrasena);
-//                empl.setTelefono_contacto(tlf);
-//                
-//                session.update(empl);
-//                System.out.println("Empleado modificado");
-//            
-//             }else {
-//                System.out.println("Empleado no encontrado");
-//            }
-//            
-//             transaction.commit();
-//             
-//        }catch (Exception e) {
-//            if (transaction != null) {
-//                transaction.rollback();
-//            }
-//            e.printStackTrace();
-//        }
-//        
-//    }
+
+    /**
+     * Modifica empleado teniendo recibiendo el objeto Empleado
+     * @param empleado
+     * @return 
+     */
     public static boolean modificar_empleado(Empleado empleado) {
         Transaction transaction = null;
         boolean ok = false;
@@ -175,6 +161,13 @@ public class EmpleadoDAO {
         return ok;
     }
 
+    /**
+     * Modifica la contraseña de un empleado existente a partir de su id y la nueva contraseña. 
+     * Ademas, modifica todas las incidencias en las que el empleado esta relacionado con los nuevos datos
+     * @param id
+     * @param contrasena
+     * @return 
+     */
     public static boolean modificar_contrasena_empleado(int id, String contrasena) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
@@ -226,6 +219,12 @@ public class EmpleadoDAO {
         return false;
     }
 
+    /**
+     * Valida el empleado comparando user y contraseña con base de datos
+     * @param user
+     * @param contrasena
+     * @return 
+     */
     public static boolean validar_empleado(String user, String contrasena) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             String hql = "FROM Empleado WHERE nombre_usuario = :user AND contrasena = :contrasena";
@@ -244,6 +243,10 @@ public class EmpleadoDAO {
         }
     }
 
+    /**
+     * Metodo que devuelve una lista de empleados consultada en la BBDD
+     * @return 
+     */
     public static ArrayList<Empleado> listarEmpleados() {
         ArrayList<Empleado> listaEmpleados = new ArrayList<>();
 
@@ -261,6 +264,11 @@ public class EmpleadoDAO {
         return listaEmpleados;
     }
 
+    /**
+     * Devuelve un objeto Empleado a traves de un select con el user
+     * @param user
+     * @return 
+     */
     public static Empleado obtener_empleado_por_user(String user) {
         Empleado empleado = null;
 

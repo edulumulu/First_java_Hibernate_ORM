@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author eduardolucasmunozdelucas
+ * @author edulumulu
  */
 public class Insertar_empleado extends javax.swing.JDialog {
 
@@ -24,6 +24,8 @@ public class Insertar_empleado extends javax.swing.JDialog {
     public Insertar_empleado(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
+        //Cargo lista de empleados
         lista_empleados = empleadoDao.listarEmpleados();
     }
 
@@ -49,6 +51,7 @@ public class Insertar_empleado extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Insertar empleado");
+        setResizable(false);
 
         jLabel1.setText("Nombre usuario:");
 
@@ -129,6 +132,10 @@ public class Insertar_empleado extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Compruebo que los campos no estan vacios y que no coincida nombre o usuario con alguno existente
+     * @param evt 
+     */
     private void bt_aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_aceptarActionPerformed
         
         
@@ -159,6 +166,8 @@ public class Insertar_empleado extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Empleado insertado con éxito", "EMpleado insertado", JOptionPane.WARNING_MESSAGE);
             dispose();
 
+        }else{
+            JOptionPane.showMessageDialog(this, "No se ha podido insertar el empleado", "EMpleado no insertado", JOptionPane.WARNING_MESSAGE);
         }
         
     }//GEN-LAST:event_bt_aceptarActionPerformed

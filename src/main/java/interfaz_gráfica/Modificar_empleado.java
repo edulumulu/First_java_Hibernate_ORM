@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author eduardolucasmunozdelucas
+ * @author edulumulu
  */
 public class Modificar_empleado extends javax.swing.JDialog {
 
@@ -35,15 +35,17 @@ public class Modificar_empleado extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
 
+        //listo empleados en el combobox
         lista_empleados = empleadoDao.listarEmpleados();
-        bt_aceptar.setEnabled(false);
-
+        
         if (!lista_empleados.isEmpty()) {
             for (Empleado em : lista_empleados) {
                 cb_empleados.addItem(em); // Guardar objetos en lugar de nombres
             }
         }
 
+        //Deshabilito campos  y boton aceptar
+        bt_aceptar.setEnabled(false);
         et_user.setEnabled(false);
         et_nombre.setEnabled(false);
         et_pass.setEnabled(false);
@@ -53,6 +55,7 @@ public class Modificar_empleado extends javax.swing.JDialog {
         et_pass.setEditable(false);
         et_tel.setEditable(false);
 
+        //listener que habilita los campos y el botón cuando un empleado es selecionado
         cb_empleados.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -108,6 +111,7 @@ public class Modificar_empleado extends javax.swing.JDialog {
         lb_id = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         jLabel1.setText("Nombre usuario:");
 
@@ -211,6 +215,10 @@ public class Modificar_empleado extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Verifica qeu no haya campos vacios y que el nombre o usuario no coincide con alguno existente (sin tener en cuenta el suyo) y modifica usuario
+     * @param evt 
+     */
     private void bt_aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_aceptarActionPerformed
 
         // Verificar si hay campos vacíos

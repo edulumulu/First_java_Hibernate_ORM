@@ -7,7 +7,7 @@ import java.util.Date;
 
 /**
  *
- * @author eduardolucasmunozdelucas
+ * @author edulumulu
  */
 
 public class Incidencia implements Serializable{
@@ -84,6 +84,10 @@ public class Incidencia implements Serializable{
         this.tipo = tipo;
     }
     
+    /**
+     * Método que obtine un string con el tipo de incidencia dependiendo de si es una u otra
+     * @return 
+     */
     public String obtenerUrgencia() {
         if (tipo == 'U') {
             return "Urgente";

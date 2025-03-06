@@ -33,6 +33,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menú principal");
+        setResizable(false);
 
         bt_ingresar.setText("Ingresar empleado");
         bt_ingresar.addActionListener(new java.awt.event.ActionListener() {
@@ -121,6 +122,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButton2SalirActionPerformed
 
+    
     private void bt_ingresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_ingresarActionPerformed
        
         Insertar_empleado l = new Insertar_empleado(this, true);

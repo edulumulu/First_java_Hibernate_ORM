@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author eduardolucasmunozdelucas
+ * @author edulumulu
  */
 public class Loguearse extends javax.swing.JDialog {
     
@@ -42,6 +42,7 @@ public class Loguearse extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Login");
+        setResizable(false);
 
         jLabel1.setText("Usuario:");
 
@@ -107,6 +108,7 @@ public class Loguearse extends javax.swing.JDialog {
         dispose();
     }//GEN-LAST:event_bt_salirActionPerformed
 
+    //Compruebo que los campos no estñen vacíos y valido con la base de datos, si se valida paso al siguiente diálogo el objeto empleado que se ha validado
     private void bt_aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_aceptarActionPerformed
         
         if (et_user.getText().isEmpty() || et_pass.getText().isEmpty()) {
@@ -126,6 +128,7 @@ public class Loguearse extends javax.swing.JDialog {
             dispose();
             
             Menu_incidencias modificarIncidencias = new Menu_incidencias();
+            modificarIncidencias.setLocationRelativeTo(null);
             modificarIncidencias.setEmpleado(emp);
             modificarIncidencias.setVisible(true);
             

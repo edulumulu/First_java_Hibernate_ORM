@@ -15,8 +15,8 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
- * @author eduardolucasmunozdelucas
+ * 
+ * @author edulumulu
  */
 public class Incidencias_destinadass_a_empleado extends javax.swing.JDialog {
 
@@ -35,6 +35,7 @@ public class Incidencias_destinadass_a_empleado extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
 
+        //listo empleados con el select y los cargo en el combobox
         lista_empleados = empleadoDAO.listarEmpleados();
 
         if (!lista_empleados.isEmpty()) {
@@ -43,6 +44,7 @@ public class Incidencias_destinadass_a_empleado extends javax.swing.JDialog {
             }
         }
 
+        //Listener para mostrar lista de incidencias cuando el cliente ha sido selecionado
         cb_empleados.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -98,6 +100,8 @@ public class Incidencias_destinadass_a_empleado extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Incidencias destinadas a usuario");
+        setBackground(new java.awt.Color(51, 255, 51));
+        setResizable(false);
 
         tb_tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

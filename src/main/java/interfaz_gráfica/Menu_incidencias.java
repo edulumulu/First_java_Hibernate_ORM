@@ -19,16 +19,15 @@ public class Menu_incidencias extends javax.swing.JFrame {
         initComponents();
     }
 
-    // Método para recibir el empleado
+    // Método para recibir el empleado de dialogo anterior
     public void setEmpleado(Empleado empleado) {
         if (empleado == null) {
         throw new IllegalArgumentException("El empleado recibido es null");
     }
         this.empleado = empleado;
-        // Aquí puedes hacer cualquier otra cosa con el empleado, como actualizar la UI
     }
 
-    // Método para acceder al empleado
+    // Método para acceder al empleado de dialogo anterior
     public Empleado getEmpleado() {
         return this.empleado;
     }
@@ -50,6 +49,8 @@ public class Menu_incidencias extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menú incidencias");
+        setBackground(new java.awt.Color(51, 255, 51));
+        setResizable(false);
 
         bt_ingresar.setText("Ingresar incidencia");
         bt_ingresar.addActionListener(new java.awt.event.ActionListener() {
@@ -138,6 +139,10 @@ public class Menu_incidencias extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButton2SalirActionPerformed
 
+    /**
+     * Abro el dialogo siguiente y envío un empleado
+     * @param evt 
+     */
     private void bt_ingresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_ingresarActionPerformed
        
         Insertar_inicidencia l = new Insertar_inicidencia(this, true);

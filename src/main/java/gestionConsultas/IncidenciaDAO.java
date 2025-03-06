@@ -13,11 +13,16 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 /**
- *
- * @author eduardolucasmunozdelucas
+ * Clase con los métodos de interación con la base de datos
+ * @author edulumulu
  */
 public class IncidenciaDAO {
 
+    /**
+     * INserta una incidencia
+     * @param incidencia
+     * @return 
+     */
     public static boolean insertarIncidencia(Incidencia incidencia) {
         Transaction transaction = null;
         Session session = null;
@@ -49,6 +54,10 @@ public class IncidenciaDAO {
         return ok;
     }
 
+    /**
+     * Lista las incidencias teniendo en cuenta los datos de los Empleados tambien
+     * @return 
+     */
     public static ArrayList<Incidencia> listar_incidencias() {
         ArrayList<Incidencia> listaIncidencias = new ArrayList<>();
 
@@ -68,6 +77,11 @@ public class IncidenciaDAO {
         return listaIncidencias;
     }
 
+    /**
+     * Obtine los detalles de una incidencia por su id
+     * @param id
+     * @return 
+     */
     public static Incidencia obtener_incidencia_por_Id_incidencia(int id) {
         Incidencia incidencia = null;
 
@@ -91,6 +105,11 @@ public class IncidenciaDAO {
         return incidencia;
     }
 
+    /**
+     * Obtine listado de incidencias por empleado
+     * @param idEmpleado
+     * @return 
+     */
     public static ArrayList<Incidencia> obtener_incidencias_por_empleado(int idEmpleado) {
         ArrayList<Incidencia> listaIncidencias = new ArrayList<>();
 
@@ -113,6 +132,11 @@ public class IncidenciaDAO {
         return listaIncidencias;
     }
 
+    /**
+     * Obtine listado de incidencias destinadas a un empleado
+     * @param empleado
+     * @return 
+     */
     public static ArrayList<Incidencia> obtener_incidencias_para_empleado(Empleado empleado) {
         ArrayList<Incidencia> listaIncidencias = new ArrayList<>();
 

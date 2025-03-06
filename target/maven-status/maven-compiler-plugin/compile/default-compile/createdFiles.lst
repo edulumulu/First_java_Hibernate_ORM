@@ -16,7 +16,6 @@ interfaz_gráfica/Insertar_empleado.class
 interfaz_gráfica/Modificar_empleado$2.class
 interfaz_gráfica/Mostrar_incidencias$3.class
 interfaz_gráfica/Modificar_contrasena$1.class
-interfaz_gráfica/Insertar_inicidencia$3$1.class
 interfaz_gráfica/Incidencia_por_id$3.class
 interfaz_gráfica/Eliminar_Empleado$1.class
 interfaz_gráfica/Incidencia_por_id$3$1.class
@@ -42,11 +41,13 @@ interfaz_gráfica/MenuPrincipal$5.class
 interfaz_gráfica/Modificar_contrasena$2.class
 herramientas/HibernateUtil.class
 interfaz_gráfica/Modificar_empleado$3.class
+interfaz_gráfica/Insertar_inicidencia$4.class
 interfaz_gráfica/Loguearse.class
 interfaz_gráfica/Insertar_empleado$3.class
 interfaz_gráfica/Eliminar_Empleado$3.class
 gestionConsultas/IncidenciaDAO.class
 interfaz_gráfica/Incidencias_destinadass_a_empleado$2.class
+interfaz_gráfica/Insertar_inicidencia$4$1.class
 POJO/Incidencia.class
 interfaz_gráfica/Loguearse$3.class
 interfaz_gráfica/Incidencias_creadas_por_empleado$1.class

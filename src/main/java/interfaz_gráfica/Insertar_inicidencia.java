@@ -8,13 +8,15 @@ import POJO.Empleado;
 import POJO.Incidencia;
 import gestionConsultas.EmpleadoDAO;
 import gestionConsultas.IncidenciaDAO;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author eduardolucasmunozdelucas
+ * @author edulumulu
  */
 public class Insertar_inicidencia extends javax.swing.JDialog {
 
@@ -23,7 +25,7 @@ public class Insertar_inicidencia extends javax.swing.JDialog {
     EmpleadoDAO empleadoDao = new EmpleadoDAO();
     IncidenciaDAO incidenciaDAO = new IncidenciaDAO();
 
-    // Método para recibir el empleado
+    // Método para recibir el empleado del jdialog anterior
     public void setEmpleado(Empleado empleado) {
         this.empleado = empleado;
 
@@ -35,7 +37,7 @@ public class Insertar_inicidencia extends javax.swing.JDialog {
         }
     }
 
-    // Método para acceder al empleado
+    // Método para acceder al empleado del jdialog anterior
     public Empleado getEmpleado() {
         return this.empleado;
     }
@@ -49,6 +51,7 @@ public class Insertar_inicidencia extends javax.swing.JDialog {
 
         lb_user.setText("Cargando...");
 
+        //Cargo el nombre del usuario logueado qeu será el origen de la incidencia
         if (empleado != null) {
             lb_user.setText(empleado.getNombre_usuario());
         } else {
@@ -56,14 +59,31 @@ public class Insertar_inicidencia extends javax.swing.JDialog {
             // O maneja el error de manera adecuada si el empleado es null
         }
 
+        //listo los empleados en el combobox
         lista_empleados = empleadoDao.listarEmpleados();
         //bt_aceptar.setEnabled(false);
-
         if (!lista_empleados.isEmpty()) {
             for (Empleado em : lista_empleados) {
                 cb_empleados.addItem(em); // Guardar objetos en lugar de nombres
             }
         }
+        
+        //deshabilito detalle hasta que se elija un empleado destino
+        et_detalle.setEnabled(false);
+        // Por defecto pongo la urgencia normal
+        cb_urgencia.setSelectedItem("Normal");
+        
+        //listener del combobox de empleados
+        cb_empleados.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (cb_empleados.getSelectedItem() != null) {
+
+                  et_detalle.setEnabled(true);
+
+                }
+            }
+        });
 
     }
 
@@ -89,6 +109,8 @@ public class Insertar_inicidencia extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Insertar incidencia");
+        setBackground(new java.awt.Color(51, 255, 51));
+        setResizable(false);
 
         jLabel1.setText("Usiario que genera incidencia:");
 
@@ -174,6 +196,10 @@ public class Insertar_inicidencia extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Comppruebo que el texto de detalle no esté vacío y cargo la inicdencia en la base de datos
+     * @param evt 
+     */
     private void bt_aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_aceptarActionPerformed
 
         
@@ -182,6 +208,7 @@ public class Insertar_inicidencia extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Debes rellenar el detalle de la incidencia", "Acción fallida", JOptionPane.WARNING_MESSAGE);
             return;
         }
+        
          Date fechahoy = new Date();
          char urgencia;
          
