@@ -61,3 +61,8 @@ Ejecutar `Main.java` para acceder al menú de consola, que permite:
    <property name="connection.url">jdbc:mysql://localhost:3306/tu_base_de_datos</property>
    <property name="connection.username">tu_usuario</property>
    <property name="connection.password">tu_contraseña</property>
+
+
+---
+
+📌 **Autor:** *edulumulu*
