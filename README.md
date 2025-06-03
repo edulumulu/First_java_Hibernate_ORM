@@ -1,6 +1,6 @@
 # Gestión de Incidencias con Hibernate y Swing
 
-Este proyecto es una aplicación Java que permite la gestión de empleados y sus incidencias mediante una base de datos MySQL, utilizando **Hibernate** como ORM. Los usuarios pueden interactuar con la aplicación a través de una **interfaz gráfica (Swing)** o mediante la **consola**, que incluye un menú para crear datos de prueba.
+Este proyecto es una aplicación Java que permite la gestión de empleados y sus incidencias mediante una base de datos MySQL, utilizando **Hibernate** como ORM. Los usuarios pueden interactuar con la aplicación a través de una **interfaz gráfica (Swing)** e incialmente mediante la **consola**, que incluye un menú para crear datos de prueba.
 
 ## 🚀 Funcionalidades
 
